@@ -40,9 +40,11 @@
 }
 </style>
 <script src="../lib/common.js"></script>
+<script src="./data.js"></script>
 <script>
 var time;
 var bt_execute; //제어버튼
+var content;//단어 출력 영역
 var min=4; //시간 분
 var sec=0; //시작 초
 var st;//현재 실행중인 타임 메서드!!
@@ -51,6 +53,7 @@ var flag=false;//실행여부를 결정짓는 논리값 변수!!
 function init(){
 	time=document.getElementById("time");
 	bt_execute=document.getElementById("bt_execute");
+	content=document.getElementById("content");
 
 	showTimeText();
 }
@@ -94,8 +97,13 @@ function timeWatch(){
 }
 function showTimeText(){
 	time.innerText=getTimeString(min)+":"+getTimeString(sec);
-
 }
+//다음 단어 나오기!!!
+function pass(){
+	var r=getRandom(word.length);
+	content.innerText=word[r];
+}
+
 
 addEventListener("load",function(){
 	init();
@@ -112,7 +120,7 @@ addEventListener("load",function(){
 		<div class="center">
 			<div class="up">
 				<button onClick="execute()" id="bt_execute">Start</button>
-				<button>Pass</button>
+				<button onClick="pass()">Pass</button>
 				<button>정답</button>
 				<button>ReLoad</button>
 			</div>
