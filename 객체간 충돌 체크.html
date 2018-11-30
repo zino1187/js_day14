@@ -10,6 +10,7 @@
 }
 </style>
 <script src="./Rect.js"></script>
+<script src="../lib/common.js"></script>
 <script>
 var stage;
 var r1,r2;
@@ -31,6 +32,14 @@ function control(){
 		case 38:r1.velY=-5;break;
 		case 40:r1.velY=5;break;
 	}
+	//현재 움직이고 있는 물체가 타겟 물체와 교차하는지 체크한다!!
+	var result=collisionCheck(r1,r2);	
+	if(result){
+		r1.div.style.background="yellow";
+	}else{
+		r1.div.style.background="blue";
+	}
+
 	r1.tick();
 	r1.render();
 }
