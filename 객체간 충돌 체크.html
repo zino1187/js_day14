@@ -3,15 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <title>객체간 충돌 체크</title>
+<style>
+#stage{
+	width:100%;
+	height:700px;
+}
+</style>
 <script src="./Rect.js"></script>
 <script>
+var stage;
 function init(){
-	//두개의 사각형 인스턴스를 만들되, 서로 거리를 둔다, 배경색도 틀리게
+	stage=document.getElementById("stage");
 
+	//두개의 사각형 인스턴스를 만들되, 서로 거리를 둔다, 배경색도 틀리게
+	//사각형1, x:100, y:150 , 파란색, 가로*세로 정사각형 100,속도0 
+	//사각형2  x:500, y:150 , 노란색, 가로*세로 정사각형 100,속도0
+	var r1=new Rect(stage,100,100,100,150,0,0,"blue");
+	var r2=new Rect(stage,100,100,500,150,0,0,"red");
 }
 </script>
 </head>
 <body onLoad="init()">
-
+	<div id="stage"></div>
 </body>
 </html>
