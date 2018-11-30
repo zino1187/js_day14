@@ -45,15 +45,18 @@
 var time;
 var bt_execute; //제어버튼
 var content;//단어 출력 영역
+var score_area; //점수 출력 영역
 var min=4; //시간 분
 var sec=0; //시작 초
 var st;//현재 실행중인 타임 메서드!!
 var flag=false;//실행여부를 결정짓는 논리값 변수!!
+var score=0;
 
 function init(){
 	time=document.getElementById("time");
 	bt_execute=document.getElementById("bt_execute");
 	content=document.getElementById("content");
+	score_area=document.getElementById("score_area");
 
 	showTimeText();
 }
@@ -61,7 +64,7 @@ function execute(){
 	flag=!flag; //뒤집기!!
 
 	if(flag){
-		st=setInterval("timeWatch()",10);//재개
+		st=setInterval("timeWatch()",100);//재개
 		//멈춤 텍스트를 출력
 		bt_execute.innerText="Pause";
 	}else{
@@ -103,7 +106,11 @@ function pass(){
 	var r=getRandom(word.length);
 	content.innerText=word[r];
 }
-
+function next(){
+	score+=10;
+	score_area.innerText=score+" 점";
+	pass();
+}
 
 addEventListener("load",function(){
 	init();
@@ -121,8 +128,8 @@ addEventListener("load",function(){
 			<div class="up">
 				<button onClick="execute()" id="bt_execute">Start</button>
 				<button onClick="pass()">Pass</button>
-				<button>정답</button>
-				<button>ReLoad</button>
+				<button onClick="next()">정답</button>
+				<button onClick="location.reload()">ReLoad</button>
 			</div>
 			<div id="content">스피드 퀴즈 !!</div>
 		</div>
@@ -130,7 +137,7 @@ addEventListener("load",function(){
 			<h1>남은시간</h1>
 			<h1 id="time">05:00</h1>
 			<h1>점수</h1>
-			<h1>0 점</h1>
+			<h1 id="score_area">0 점</h1>
 		</div>
 	</div>
 
