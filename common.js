@@ -41,6 +41,6 @@ function collisionCheck(me, target) {
 	//나의 높이가 상대의 범위에 있는지 체크
 	var vertical1=(me.y+me.height >= target.y);  //위에서 아래로 접근시
 	var vertical2=(me.y <= target.y+target.height); //아래에서 위로 접근시
+
 	return (horizon1 && horizon2) && (vertical1 && vertical2);
 }
-
