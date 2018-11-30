@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>스피드 퀴즈</title>
+<style>
+.wrapper{
+	width:100%;
+	height:600px;
+}
+.left{
+	width:20%;
+	height:100%;
+	background:yellow;
+	float:left;
+}
+.center{
+	width:60%;
+	height:100%;
+	background:green;
+	float:left;
+}
+.right{
+	width:20%;
+	height:100%;
+	background:yellow;
+	float:left;
+}
+.up{
+	width:100%;
+	height:50px;
+	background:skyblue;
+}
+#content{
+	width:100%;
+	height:550px;
+	background:red;
+}
+</style>
+<script>
+var time;
+var min=3; //시간 분
+var sec=0; //시작 초
+function init(){
+	time=document.getElementById("time");
+}
+function execute(){
+	setInterval("timeWatch()",10);
+}
+//시간을 처리하는 함수 
+function timeWatch(){
+	sec--;
+	//초에서 음수란 존재하지 않는다...음수를 만났다는 건 
+	//드디어 분이 1 감소했다는 의미이므로, 분을 -1 해주고
+	//초는 다시 복귀해야 한다..
+	if(sec <0){
+		min--;
+		sec=59;
+	}
+	time.innerText=min+":"+sec;
+}
+
+addEventListener("load",function(){
+	init();
+});
+</script>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="left">
+			<select id="sel">
+				<option>팀 선택</option>
+			</select>
+		</div>
+		<div class="center">
+			<div class="up">
+				<button onClick="execute()" id="bt_execute">Start</button>
+				<button>Pass</button>
+				<button>정답</button>
+				<button>ReLoad</button>
+			</div>
+			<div id="content"></div>
+		</div>
+		<div class="right">
+			<h1>남은시간</h1>
+			<h1 id="time">03:00</h1>
+			<h1>점수</h1>
+			<h1>0 점</h1>
+		</div>
+	</div>
+
+</body>
+</html>
